@@ -51,8 +51,6 @@ class ProduitController extends Controller
             $produitExistant->quantite_en_stock += $request->input('quantite_en_stock');
             $produitExistant->save();
         } else {
-            // Sinon, créez un nouveau produit
-            $produit = new Produit($request->request);
 
             // Assurez-vous que $request->input('fournisseur_id') contient une valeur valide
             if ($request->input('fournisseur_id')) {
