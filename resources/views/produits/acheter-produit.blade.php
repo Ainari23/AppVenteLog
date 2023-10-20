@@ -1,21 +1,9 @@
-@extends('layout')
-    
+@extends('layouts.app', [
+    'namePage' => 'Produits',
+    'class' => 'sidebar-mini',
+    'activePage' => 'acheter-produit',
+])
 @section('content')
-<h1>Liste des Produits</h1>
-<!-- Connection -->
-<ul>
-    @auth
-    {{ \Illuminate\Support\Facades\Auth::user()->name }}
-    <form class="nav-item" action="{{ route('auth.logout') }}" method="POST">
-        @method('delete')
-        @csrf
-        <button class="nav-link">Se déconnecter</button>
-    </form>
-    @endauth
-    @guest
-    <a href="{{ route('auth.login') }}">Se connecter</a>
-    @endguest
-
     <!-- Afficher mes produits -->
     <div class="row">
         @foreach ($produits as $produit)

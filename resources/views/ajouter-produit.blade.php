@@ -1,6 +1,15 @@
-<div class="container">
+@extends('layouts.app', [
+    'namePage' => 'Produits',
+    'class' => 'sidebar-mini',
+    'activePage' => 'ajouter-produit',
+])
+
+@section('content')
+  <div class="panel-header panel-header-sm">
+  </div>
+  <div class="container">
     <h1>Ajouter un Produit</h1>
-    <form method="POST" action="{{ route('produit.store') }}">
+    <form method="POST" action="{{ route('ajouter-produit.store') }}">
         @csrf <!-- Ajoutez le jeton CSRF -->
 
         <div class="form-group">
@@ -40,3 +49,4 @@
         <button type="submit" class="btn btn-primary">Ajouter le Produit</button>
     </form>
 </div>
+@endsection

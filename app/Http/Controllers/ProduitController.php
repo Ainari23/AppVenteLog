@@ -5,65 +5,32 @@ use Illuminate\Http\Request;
 use App\Models\Fournisseur;
 use App\Models\Produit; 
 use App\Models\User;
+use App\Http\Requests\ProduitRequest; 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 
 class ProduitController extends Controller
 {
-    protected $table = 'produit';
-    public function index(): View{
-        $email = 'iantsa.nyaina22@gmail.com';
-        if (!User::where('email', $email)->exists()) {
-            User::create([
-                'name' => 'Iantsa',
-                'email' => $email,
-                'password' => Hash::make('0000')
-            ]);
-        }
-        $produits = Produit::with('fournisseur')->get(); // Récupérer la liste des produits depuis la base de données
-        return view('produits.index', compact('produits'));
+    public function index(){
+        $fournisseurs =  Fournisseur::all();
+        return view('ajouter-produit',compact('fournisseurs'));
     }
     
-    public function create()
+    public function create(ProduitRequest $request)
     {
-        $fournisseurs = Fournisseur::all(); // Récupérez la liste des fournisseurs
+        $fournisseurs = Fournisseur::all();
         return view('ajouter-produit', compact('fournisseurs'));
     }
 
-    public function store(Request $request)
+    public function store(ProduitRequest $request)
     {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'prix_unitaire' => 'required|numeric',
-            'quantite_en_stock' => 'required|integer',
-            'code_categorie' => 'required|string|max:255',
-            'fournisseur_id' => 'required|exists:fournisseurs,id', 
-        ]);
-
-        // Recherchez un produit identique pour le même fournisseur
-        $produitExistant = Produit::where('nom', $request->input('nom'))
-            ->where('fournisseur_id', $request->input('fournisseur_id'))
-            ->first();
-
-        if ($produitExistant) {
-            // Si un produit identique existe, mettez à jour la quantité en stock
-            $produitExistant->quantite_en_stock += $request->input('quantite_en_stock');
-            $produitExistant->save();
-        } else {
-
-            // Assurez-vous que $request->input('fournisseur_id') contient une valeur valide
-            if ($request->input('fournisseur_id')) {
-                // Récupérer l'ID de l'entreprise associée au fournisseur
-                $fournisseur = Fournisseur::find($request->input('fournisseur_id'));
-                if ($fournisseur) {
-                    $entrepriseId = $fournisseur->entreprise_id;
-                }
-            }
-
-            $produit->save();
+        dd($request->all());
+        $produit = Produit::create($validatedData);
+        // Set a default value if 'fournisseur_id' is not provided
+        if (!isset($validatedData['fournisseur_id'])) {
+            $validatedData['fournisseur_id'] = $defaultFournisseurId; 
         }
-
-        return redirect()->route('produit.create')->with('success', 'Produit ajouté avec succès');
+        
+        return redirect()->route('ajouter-produit.create')->with('success', 'Produit ajouté avec succès');
     }
 }

@@ -18,5 +18,5 @@ class AcheterProduitController extends Controller
         $elementsPanier = ElementPanier::where('user_id', auth()->id())->get();
         
         return view('produits.acheter-produit', ['produits' => $produits, 'elementsPanier' => $elementsPanier]);
-    } 
+    }
 }

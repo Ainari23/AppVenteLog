@@ -47,6 +47,7 @@ Route::post('/ajouter-fournisseur', [FournisseurController::class,'store'])->nam
 
 
 //AuthSession
+Route::get('/produits/acheter-produit');
 Route::get('/login',[AuthController::class,'login'])->name('auth.login');
 Route::delete('/logout',[AuthController::class,'logout'])->name('auth.logout');
 Route::post('/login',[AuthController::class,'doLogin']);
@@ -74,9 +75,18 @@ Route::post('/attribuer-role-employe', [RolesController::class, 'attribuerRoleEm
 Route::get('/entreprises/create', [EntrepriseController::class, 'create'])->name('entreprises.create');
 Route::post('/entreprises', [EntrepriseController::class, 'store'])->name('entreprises.store');
 
-//Produits
-Route::get('/ajouter-produit', [ProduitController::class, 'create'])->name('produit.create');
-Route::post('/ajouter-produit', [ProduitController::class, 'store'])->name('produit.store');
+//ajouter produit
+Route::resource('ajouter-produit', 'App\Http\Controllers\ProduitController')->names([
+    'index' =>  'ajouter-produit.index',
+    'create' => 'ajouter-produit.create',
+    'store' => 'ajouter-produit.store',
+    ]);
+//AuthSession
+Route::get('/produits/acheter-produit',[AcheterProduitController::class,'index'])->name('produits.acheter-produit.acheterProduit');
+Route::get('/login',[AuthController::class,'login'])->name('auth.login');
+Route::delete('/logout',[AuthController::class,'logout'])->name('auth.logout');
+Route::post('/login',[AuthController::class,'doLogin']);
+
 //Route pour afficher les produits
 Route::get('/produits/acheter-produit', [AcheterProduitController::class, 'acheterProduit'])->name('produits.acheter-produit');
 

@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produit extends Model
 {
-    protected $table = 'produit'; // Le nom de la table dans la base de données
-
-    protected $primaryKey = 'id'; // La clé primaire de la table
 
     protected $fillable = [
         'nom',
@@ -16,6 +13,7 @@ class Produit extends Model
         'prix_unitaire',
         'quantite_en_stock',
         'code_categorie',
+        'fournisseur_id',
         // Ajoutez ici d'autres colonnes si nécessaire
     ];
 
