@@ -24,13 +24,26 @@ class ProduitController extends Controller
 
     public function store(ProduitRequest $request)
     {
-        dd($request->all());
-        $produit = Produit::create($validatedData);
+        $validatedData = $request->validated();
+        $produit = new Produit([
+            'nom' => $validatedData['nom'],
+            'description' => $validatedData['description'],
+            'prix_unitaire' => $validatedData['prix_unitaire'],
+            'quantite_en_stock' => $validatedData['quantite_en_stock'],
+            'code_categorie' => $validatedData['code_categorie'],
+            'fournisseur_id' => $validatedData['fournisseur_id'],
+        ]);
+    
         // Set a default value if 'fournisseur_id' is not provided
         if (!isset($validatedData['fournisseur_id'])) {
-            $validatedData['fournisseur_id'] = $defaultFournisseurId; 
+            $defaultFournisseurId = 1; // Remplacez cette valeur par la valeur par défaut appropriée
+            $produit->fournisseur_id = $defaultFournisseurId;
         }
+    
+        // Sauvegarder le produit
+        $produit->save();
         
         return redirect()->route('ajouter-produit.create')->with('success', 'Produit ajouté avec succès');
     }
+    
 }

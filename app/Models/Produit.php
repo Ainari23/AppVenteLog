@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produit extends Model
 {
-
+    protected $table = 'Produit';
     protected $fillable = [
         'nom',
         'description',
@@ -26,4 +26,5 @@ class Produit extends Model
     {
         return $this->hasMany(ElementPanier::class);
     }
+
 }

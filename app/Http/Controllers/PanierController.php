@@ -29,6 +29,7 @@ class PanierController extends Controller
             $panier[$id]['quantite']++;
         }  else {
             $panier[$id] = [
+                'nom' => $produit->nom,
                 "user_id" => $produit->user_id,
                 "produit_id	" => $produit->produit_id,
                 "prix_unitaire" => $produit->prix_unitaire,
@@ -67,11 +68,10 @@ class PanierController extends Controller
     {
         $elementsDuPanier = $request->input('elementsDuPanier');
         if (is_array($elementsDuPanier) && !empty($elementsDuPanier)) {
-        // Parcourez les éléments du panier et enregistrez-les dans la base de données
         foreach ($elementsDuPanier as $id => $details) {
-            // Assurez-vous d'ajuster cette logique en fonction de votre modèle de données
+
             $nouvelElement = new ElementPanier();
-            $nouvelElement->user_id = auth()->user()->id; // Vous devrez ajuster cela en fonction de votre gestion de l'authentification des utilisateurs.
+            $nouvelElement->user_id = auth()->user()->id;
             $produitId = $id;
             if (isset($details['quantite'])) {
             $nouvelElement->produit_id = $produitId;

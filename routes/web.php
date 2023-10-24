@@ -88,10 +88,23 @@ Route::delete('/logout',[AuthController::class,'logout'])->name('auth.logout');
 Route::post('/login',[AuthController::class,'doLogin']);
 
 //Route pour afficher les produits
-Route::get('/produits/acheter-produit', [AcheterProduitController::class, 'acheterProduit'])->name('produits.acheter-produit');
+Route::resource('/produits/acheter-produit','App\Http\Controllers\AcheterProduitController')->names([
+    'acheterProduit' => 'acheter-produit.acheterProduit',
+    'rechercherProduit'=> 'acheter-produit.rechercherProduit',
+]);
+Route::get('/rechercherProduit',[AcheterProduitController::class,'rechercherProduit'])->name('acheter-produit.rechercherProduit');
 
-
-
+/*
+Route::resource('/produits/acheter-produit', 'App\Http\Controllers\PanierController')->names([
+    'index' =>  'index.index',
+    'panier' => 'ajouter-produit.panier',
+    'addToCart' => 'ajouter-au-panier.addToCart',
+    'update' => 'modifier-panier.update',
+    'remove' => 'supprimer-du-panier.remove',
+    'remove' => 'supprimer-du-panier',
+    'envoyerAuVendeur' => 'produits.panier',
+    ]);
+*/
 Route::get('/produits/index', [PanierController::class, 'index']);
 Route::get('panier', [PanierController::class, 'panier'])->name('panier');
 Route::get('ajouter-au-panier/{id}', [PanierController::class, 'addToCart'])->name('ajouter-au-panier');

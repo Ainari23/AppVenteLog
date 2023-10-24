@@ -4,10 +4,10 @@
 -->
   <div class="logo">
     <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      {{ __('CT') }}
+      {{ __('PS') }}
     </a>
     <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+      {{ __('PLASTIC SOLD') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -58,14 +58,19 @@
             </a>
           </li>
           <li class="@if ($activePage == '/produits/acheter-produit') active @endif">
-            <a href="{{ route( 'produits.acheter-produit','produits') }}">
+            <a href="{{ route( 'page.index','/produits/acheter-produit') }}">
               <i class="now-ui-icons education_atom"></i>
               <p> {{ __("liste Produits") }} </p>
             </a>
           </li>
         </ul>
       </div>
-        
+      <li class="@if ($activePage == 'panier') active @endif">
+        <a href="{{ route('page.index','panier') }}">
+          <i class="now-ui-icons shopping_cart-simple"></i>
+          <p>{{ __('Panier') }}</p>
+        </a>
+      </li>
       <li class="@if ($activePage == 'icons') active @endif">
         <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons education_atom"></i>

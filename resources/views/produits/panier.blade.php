@@ -1,4 +1,8 @@
-@extends('layout')
+@extends('layouts.app', [
+    'namePage' => 'Panier',
+    'class' => 'sidebar-mini',
+    'activePage' => 'panier',
+])
    
 @section('content')
 <table id="cart" class="table table-hover table-condensed">
@@ -23,9 +27,11 @@
             
                 <tr data-id="{{ $id }}">
                     <td data-th="Product">
-                        @if(isset($details['id']))
-                                    <h4 class="nomargin">{{ $details['id'] }}</h4>
-                        @endif
+                        @isset($details['nom'])
+                            €{{ $details['nom'] }}
+                        @else
+                            N/A
+                        @endisset
                     </td>
                     <td data-th="Price">
                         @isset($details['prix_unitaire'])
@@ -76,7 +82,8 @@
     </tfoot>
 </table>
 @endsection
-   
+
+
 @section('scripts')
 <script type="text/javascript">
    

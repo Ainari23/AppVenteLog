@@ -12,11 +12,26 @@ use App\Models\ElementPanier;
 class AcheterProduitController extends Controller
 {
     //
-    public function acheterProduit() {
-        
-        $produits = Produit::with('fournisseur')->get();
-        $elementsPanier = ElementPanier::where('user_id', auth()->id())->get();
-        
-        return view('produits.acheter-produit', ['produits' => $produits, 'elementsPanier' => $elementsPanier]);
+    public function index(){
+        $produits =  Produit::orderBy('nom', 'asc')->get();
+        return view('produits.acheter-produit',compact('produits'));
     }
+    public function acheterProduit() {
+        $produits = Produit::orderBy('nom', 'asc')->with('fournisseur')->get();
+        
+        return view('produits.acheter-produit', compact('produits'));
+    }
+    public function rechercherProduit(Request $request)
+    {
+        $recherche = $request->input('nom_produit');
+
+        $produits = Produit::where('nom', 'LIKE', '%' . $recherche . '%')
+            ->orderBy('nom', 'asc')
+            ->with('fournisseur')
+            ->get();
+
+        return view('produits.acheter-produit', compact('produits', 'recherche'));
+    }
+
+    
 }
