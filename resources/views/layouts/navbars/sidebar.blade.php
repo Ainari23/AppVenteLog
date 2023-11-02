@@ -43,7 +43,7 @@
           </ul>
         </div>
         <a data-toggle="collapse" href="#laravelExamples">
-          <i class="fab fa-laravel"></i>
+          <i class="now-ui-icons design_app"></i>
         <p>
           {{ __("Produits") }}
           <b class="caret"></b>
@@ -69,6 +69,40 @@
         <a href="{{ route('page.index','panier') }}">
           <i class="now-ui-icons shopping_cart-simple"></i>
           <p>{{ __('Panier') }}</p>
+        </a>
+
+
+
+
+        <a data-toggle="collapse" href="#laravelExamples">
+          <i class="now-ui-icons design_app"></i>
+        <p>
+          {{ __("Entreprises") }}
+          <b class="caret"></b>
+        </p>
+      </a>
+      <div class="collapse show" id="laravelExamples">
+        <ul class="nav">
+          <li class="@if ($activePage == 'Entreprises') active @endif">
+            <a href="{{ route('page.index','ajouter-entreprise') }}">
+              <i class="now-ui-icons business_briefcase-24"></i>
+              <p>{{ __('Ajouter Entreprises') }}</p>
+            </a>
+          </li>
+          <li class="@if ($activePage == '/entreprises/liste-entreprise') active @endif">
+            <a href="{{ route( 'page.index','/entreprises/liste-entreprise') }}">
+              <i class="now-ui-icons education_atom"></i>
+              <p> {{ __("liste Entreprises") }} </p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      
+      <li class="@if ($activePage == 'Fournisseurs') active @endif">
+        <a href="{{ route('page.index','ajouter-fournisseur') }}">
+          <i class="now-ui-icons shopping_delivery-fast"></i> 
+          <p>{{ __('Fournisseur') }}</p>
         </a>
       </li>
       <li class="@if ($activePage == 'icons') active @endif">

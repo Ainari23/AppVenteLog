@@ -28,7 +28,7 @@
                 <tr data-id="{{ $id }}">
                     <td data-th="Product">
                         @isset($details['nom'])
-                            €{{ $details['nom'] }}
+                            {{ $details['nom'] }}
                         @else
                             N/A
                         @endisset

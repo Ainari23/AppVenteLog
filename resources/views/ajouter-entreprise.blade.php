@@ -1,4 +1,9 @@
-
+@extends('layouts.app', [
+    'namePage' => 'Entreprises',
+    'class' => 'sidebar-mini',
+    'activePage' => 'ajouter-entreprise',
+])
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -60,14 +65,7 @@
 
                         <h4>Ajouter des employés</h4>
 
-                        <div class="form-group">
-                            <label for="employes">Sélectionnez des employés</label>
-                            <select multiple id="employes" name="employes[]" class="form-control">
-                                @foreach($utilisateurs as $utilisateur)
-                                    <option value="{{ $utilisateur->id }}">{{ $utilisateur->nom_utilisateur }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
 
                         <button type="submit" class="btn btn-primary">Ajouter l'entreprise</button>
                     </form>
@@ -76,3 +74,4 @@
         </div>
     </div>
 </div>
+@endsection

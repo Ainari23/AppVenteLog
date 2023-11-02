@@ -8,6 +8,7 @@ use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\EntrepriseListeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\VendeursController;
@@ -70,10 +71,22 @@ Route::post('/attribuer-role-gestionnaire-stock', [RolesController::class, 'attr
 Route::post('/attribuer-role-vendeur', [RolesController::class, 'attribuerRoleVendeur']);
 Route::post('/attribuer-role-employe', [RolesController::class, 'attribuerRoleEmploye']);
 
-//Entreprise
 
-Route::get('/entreprises/create', [EntrepriseController::class, 'create'])->name('entreprises.create');
-Route::post('/entreprises', [EntrepriseController::class, 'store'])->name('entreprises.store');
+
+//Entreprise
+Route::resource('ajouter-entreprise','App\Http\Controllers\EntrepriseController')->names([
+    'index' =>  'entreprises.index',
+    'create' => 'entreprises.create',
+    'store' => 'entreprises.store',
+]);
+//Afficher Entreprise
+Route::resource('/entreprises/liste-entreprise','App\Http\Controllers\EntrepriseListeController')->names([
+    'index' =>  'liste-entreprise.index',
+
+]);
+
+
+
 
 //ajouter produit
 Route::resource('ajouter-produit', 'App\Http\Controllers\ProduitController')->names([
@@ -81,18 +94,25 @@ Route::resource('ajouter-produit', 'App\Http\Controllers\ProduitController')->na
     'create' => 'ajouter-produit.create',
     'store' => 'ajouter-produit.store',
     ]);
+//Route pour afficher les produits dans un tableau
+Route::resource('/produits/acheter-produit','App\Http\Controllers\AcheterProduitController')->names([
+    'acheterProduit' => 'acheter-produit.acheterProduit',
+    'rechercherProduit'=> 'acheter-produit.rechercherProduit',
+]);
+//Route pour rechercher un produits
+Route::get('/rechercherProduit',[AcheterProduitController::class,'rechercherProduit'])->name('acheter-produit.rechercherProduit');
+
+
+
+
+
 //AuthSession
 Route::get('/produits/acheter-produit',[AcheterProduitController::class,'index'])->name('produits.acheter-produit.acheterProduit');
 Route::get('/login',[AuthController::class,'login'])->name('auth.login');
 Route::delete('/logout',[AuthController::class,'logout'])->name('auth.logout');
 Route::post('/login',[AuthController::class,'doLogin']);
 
-//Route pour afficher les produits
-Route::resource('/produits/acheter-produit','App\Http\Controllers\AcheterProduitController')->names([
-    'acheterProduit' => 'acheter-produit.acheterProduit',
-    'rechercherProduit'=> 'acheter-produit.rechercherProduit',
-]);
-Route::get('/rechercherProduit',[AcheterProduitController::class,'rechercherProduit'])->name('acheter-produit.rechercherProduit');
+
 
 /*
 Route::resource('/produits/acheter-produit', 'App\Http\Controllers\PanierController')->names([

@@ -1,4 +1,9 @@
-
+@extends('layouts.app', [
+    'namePage' => 'Fournisseurs',
+    'class' => 'sidebar-mini',
+    'activePage' => 'ajouter-fournisseur',
+])
+@section('content')
 <div class="container">
     <h1>Ajouter un Fournisseur</h1>
     <form method="POST" action="{{ route('fournisseurs.store') }}">
@@ -39,3 +44,4 @@
         <button type="submit" class="btn btn-primary">Ajouter le Fournisseur</button>
     </form>
 </div>
+@endsection
