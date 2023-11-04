@@ -14,7 +14,6 @@ class Produit extends Model
         'quantite_en_stock',
         'code_categorie',
         'fournisseur_id',
-        // Ajoutez ici d'autres colonnes si nécessaire
     ];
 
     // Définition des relations avec d'autres modèles, par exemple, la relation avec la table des fournisseurs

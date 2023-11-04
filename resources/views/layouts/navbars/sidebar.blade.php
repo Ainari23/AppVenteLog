@@ -98,6 +98,30 @@
         </ul>
       </div>
 
+      <a data-toggle="collapse" href="#laravelExamples">
+        <i class="now-ui-icons design_app"></i>
+      <p>
+        {{ __("Catégories Produits") }}
+        <b class="caret"></b>
+      </p>
+    </a>
+    <div class="collapse show" id="laravelExamples">
+      <ul class="nav">
+        <li class="@if ($activePage == '/ajouter-catégorie-produit') active @endif">
+          <a href="{{ route('page.index','/ajouter-catégorie-produit') }}">
+            <i class="now-ui-icons business_briefcase-24"></i>
+            <p>{{ __('Ajouter Catégories') }}</p>
+          </a>
+        </li>
+        <li class="@if ($activePage == '/produits/catégorie-produit') active @endif">
+          <a href="{{ route( 'page.index','/produits/catégorie-produit') }}">
+            <i class="now-ui-icons education_atom"></i>
+            <p> {{ __("liste Catégories") }} </p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
       
       <li class="@if ($activePage == 'Fournisseurs') active @endif">
         <a href="{{ route('page.index','ajouter-fournisseur') }}">

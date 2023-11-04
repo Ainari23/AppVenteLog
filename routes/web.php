@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\CategorieProduitController;
+use App\Http\Controllers\ListeCategorieController;
 use App\Http\Controllers\AcheterProduitController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\RolesController;
@@ -99,6 +101,16 @@ Route::resource('/produits/acheter-produit','App\Http\Controllers\AcheterProduit
     'acheterProduit' => 'acheter-produit.acheterProduit',
     'rechercherProduit'=> 'acheter-produit.rechercherProduit',
 ]);
+
+//Route ajouter catégorie produit
+Route::resource('/ajouter-catégorie-produit','App\Http\Controllers\CategorieProduitController')->names([
+    'index' => 'ajouter-catégorie-produit.index',
+]);
+//Route liste catégorie produit
+Route::resource('/produits/catégorie-produit','App\Http\Controllers\ListeCategorieController')->names([
+    'index' => 'categorie-produit.index',
+]);
+
 //Route pour rechercher un produits
 Route::get('/rechercherProduit',[AcheterProduitController::class,'rechercherProduit'])->name('acheter-produit.rechercherProduit');
 
