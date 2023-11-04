@@ -109,6 +109,9 @@ Route::resource('/ajouter-catégorie-produit','App\Http\Controllers\CategoriePro
 //Route liste catégorie produit
 Route::resource('/produits/catégorie-produit','App\Http\Controllers\ListeCategorieController')->names([
     'index' => 'categorie-produit.index',
+    'show' => 'categorie-produit.show',
+    'edit' => 'categorie-produit.edit',
+    'delete' => 'categorie-produit.destroy'
 ]);
 
 //Route pour rechercher un produits

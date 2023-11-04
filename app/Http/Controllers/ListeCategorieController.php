@@ -34,14 +34,14 @@ class ListeCategorieController extends Controller
     {
         $categorieProduit = CategorieProduit::find($id);
 
-        return view('categories_produits.show', compact('categorieProduit'));
+        return view('categories.show', compact('categorieProduit'));
     }
 
     public function edit($id)
     {
         $categorieProduit = CategorieProduit::find($id);
 
-        return view('categories_produits.edit', compact('categorieProduit'));
+        return view('categories.edit', compact('categorieProduit'));
     }
 
     public function update(CategorieProduitRequest $request, $id)
@@ -59,8 +59,9 @@ class ListeCategorieController extends Controller
     {
         $categorieProduit = CategorieProduit::find($id);
 
-        $categorieProduit->delete();
-
+        if ($categorieProduit != null) {
+        $categorieProduit->delete($id);
         return redirect()->route('categories_produits.index');
+    }
     }
 }

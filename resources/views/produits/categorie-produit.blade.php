@@ -27,8 +27,14 @@
                 <tr>
                 @foreach ($categoriesProduits as $CategorieProduit)
                 <td>{{ $CategorieProduit->nom_categorie }}</td>
-                <td><a href="{{ url('/produits/catégorie-produit') }}" class="btn btn-danger"> <i class="now-ui-icons gestures_tap-01"></i>Supprimer </a><form method="delete" action="{{ route('envoyer-au-vendeur') }}"></td>
-                <td><a href="{{ url('/produits/catégorie-produit') }}" class="btn btn-danger"> <i class="now-ui-icons gestures_tap-01"></i>Modifier </a><form method="update" action="{{ route('envoyer-au-vendeur') }}"></td>
+                <td><a href="{{route('catégorie-produit.show', $CategorieProduit->id)}}" type="button" class="btn btn-secondary">Detail</a></td>
+                <td><a href="{{route('catégorie-produit.edit', $CategorieProduit->id)}}" type="button" class="btn btn-warning">Editer</a></td>
+                <td><form action="{{route('catégorie-produit.destroy', $CategorieProduit->id)}}"method="POST" type="button" class="btn btn-danger" onsubmit="return confirm('Delete?')">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">DELETE</button>
+                </form>
+                </td>
                 </tr>
                 @endforeach
               </tbody>
