@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-
+use App\Models\Utilisateur;
 use Illuminate\Database\Eloquent\Model;
 
 class DroitVendeur extends Model

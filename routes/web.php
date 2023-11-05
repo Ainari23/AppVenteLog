@@ -14,7 +14,42 @@ use App\Http\Controllers\EntrepriseListeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\VendeursController;
+
+//Models
 use App\Models\Fournisseur;
+use App\Models\Produit;
+use App\Models\Entreprise;
+use App\Models\DroitVendeur;
+use App\Models\DetailsCommande;
+use App\Models\ElementPanier;
+use App\Models\Panier;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\utilisateur;
+use App\Models\CategorieProduit;
+use App\Models\AutorisationConsultationStock;
+use App\Models\AutorisationMvmtStock;
+use App\Models\BonCommande;
+use App\Models\BonLivraison;
+use App\Models\Commande;
+use App\Models\DetailsBonCommande;
+use App\Models\DetailsBonLivraison;
+use App\Models\DetailsDevis;
+use App\Models\Devis;
+use App\Models\DroitsUtilisateur;
+use App\Models\EntrepriseUtilisateur;
+use App\Models\Facture;
+use App\Models\Factures;
+use App\Models\HistoriquePaiements;
+use App\Models\HistoriquePrix;
+use App\Models\HistoriqueRemboursements;
+use App\Models\LiaisonUtilisateurAutorisation;
+use App\Models\LiaisonUtilisateurRole;
+use App\Models\ModesPaiement;
+use App\Models\MouvementsStock;
+use App\Models\Paiements;
+use App\Models\Vendeur;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -178,10 +213,40 @@ Route::get('/dashboard',function(){
     return view('dashboard');
 });
 
-/**
- * resource no ampesainaa
- * efa tafiditra ao daholo ny root crud rehetra
- * ilaintsika io resource io @ formulaire dynamic
- */
+//Route::resource des Differents Models 
+//Route::resource('NomModels',Controller::class);
+ Route::resource('fournisseur',Fournisseur::class);
+ Route::resource('produit',Produit::class);
+ Route::resource('entreprises',Entreprise::class);
+ Route::resource('droits_vendeur',DroitVendeur::class);
+ Route::resource('details_commandes',DetailsCommande::class);
+ Route::resource('panier',Panier::class);
+ Route::resource('roles',Role::class);
+ Route::resource('utilisateur',utilisateur::class);
+ Route::resource('categories_produits',CategorieProduit::class);
+ Route::resource('autorisation_consultation_stock',AutorisationConsultationStock::class);
+ Route::resource('autorisation_mvmt_stock',AutorisationMvmtStock::class);
+ Route::resource('bon_commande',BonCommande::class);
+ Route::resource('bon_livraison',BonLivraison::class);
+ Route::resource('categories_produits',CategorieProduit::class);
+ Route::resource('clients',clients::class);
+ Route::resource('commandes',commandes::class);
+ Route::resource('details_bon_commande',DetailsBonCommande::class);
+ Route::resource('details_devis',DetailsDevis::class);
+ Route::resource('devis',Devis::class);
+ Route::resource('droits_utilisateur',DroitsUtilisateur::class);
+ Route::resource('element_paniers',ElementPanier::class);
+ Route::resource('entreprise_utilisateur',EntrepriseUtilisateur::class);
+ Route::resource('facture',Facture::class);
+ Route::resource('factures',Factures::class);
+ Route::resource('historique_paiements',HistoriquePaiements::class);
+ Route::resource('historique_prix',HistoriquePrix::class);
+ Route::resource('historique_remboursements',HistoriqueRemboursements::class);
+ Route::resource('liaison_utilisateur_autorisation',LiaisonUtilisateurAutorisation::class);
+ Route::resource('liaison_utilisateur_role',LiaisonUtilisateurRole::class);
+ Route::resource('modes_paiement',ModesPaiement::class);
+ Route::resource('mouvements_stock',MouvementsStock::class);
+ Route::resource('paiements',Paiements::class);
 
- Route::resouce('fournisseur',Fournisseur::class);
+
+

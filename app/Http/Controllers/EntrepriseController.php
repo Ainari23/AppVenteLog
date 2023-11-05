@@ -24,7 +24,7 @@ class EntrepriseController extends Controller
     {
         $validatedData = $request->validated();
         if (Entreprise::where('nom', $validatedData['nom'])->exists()) {
-            throw new ValidationError('Ce nom d\'entreprise est déjà utilisé.');
+            return redirect()->route('entreprises.create')->withErrors(['nom' => 'Ce nom d\'entreprise est déjà utilisé.']);
         }
         // Créez une nouvelle entreprise en utilisant les données validées
         $entreprise = Entreprise::create($validatedData);

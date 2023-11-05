@@ -1,20 +1,19 @@
 <?php
 
 namespace App\Models;
-use App\Models\Commande;
 use App\Models\Produit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetailsCommande extends Model
+class MouvementsStock extends Model
 {
-    protected $table = 'details_commandes';
-
-    public function commande()
-    {
-        return $this->belongsTo(Commande::class, 'commande_id');
-    }
-
+    protected $fillable = [
+        'type_mouvement',
+        'produit_id',
+        'quantite_affectee',
+        'date_mouvement',
+        'emplacement'
+    ];
     public function produit()
     {
         return $this->belongsTo(Produit::class, 'produit_id');

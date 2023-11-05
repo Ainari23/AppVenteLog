@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\Fournisseur;
+use App\Models\ElementPanier;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

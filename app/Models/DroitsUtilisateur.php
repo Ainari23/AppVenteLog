@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategorieProduit extends Model
+class DroitsUtilisateur extends Model
 {
-    protected $table = 'categories_produits';
     protected $fillable = [
-        'nom_categorie'	
+        'nom_droit',
+        'description_droit'
     ];
 }

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\User;
+use App\Models\ElementPanier;
+use App\Models\Produit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
