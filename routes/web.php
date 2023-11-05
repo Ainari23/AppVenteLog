@@ -14,6 +14,8 @@ use App\Http\Controllers\EntrepriseListeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\VendeursController;
+use App\Models\Fournisseur;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -175,3 +177,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/dashboard',function(){
     return view('dashboard');
 });
+
+/**
+ * resource no ampesainaa
+ * efa tafiditra ao daholo ny root crud rehetra
+ * ilaintsika io resource io @ formulaire dynamic
+ */
+
+ Route::resouce('fournisseur',Fournisseur::class);
